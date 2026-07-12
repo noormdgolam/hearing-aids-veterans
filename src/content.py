@@ -85,7 +85,17 @@ def generate_article_body(title, category_key, keyword):
         </ul>
     </div>
 
-    <!-- adsense-placeholder-mid -->
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_PUBLISHER_ID_HERE"
+             data-ad-slot="YOUR_AD_SLOT_ID_HERE"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <h2>Understanding the Basics of {keyword.title()}</h2>
     <p>Hearing loss and tinnitus are the top two service-connected disabilities among US veterans. Whether your hearing issues stem from acute acoustic trauma (like firearms or explosions) or chronic exposure to loud machinery (such as aircraft or engine rooms), navigating the solutions can be overwhelming.</p>
@@ -123,7 +133,17 @@ def generate_article_body(title, category_key, keyword):
         </table>
     </div>
 
-    <!-- adsense-placeholder-mid -->
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_PUBLISHER_ID_HERE"
+             data-ad-slot="YOUR_AD_SLOT_ID_HERE"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <h2>Step-by-Step Guidance</h2>
     <p>To effectively handle matters related to {keyword}, follow these steps:</p>

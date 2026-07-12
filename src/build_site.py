@@ -6,7 +6,7 @@ from xml.dom import minidom
 from datetime import datetime
 from content import SITE_CONFIG, CATEGORIES, ARTICLES, PAGES
 
-OUT_DIR = "out"
+OUT_DIR = ".."
 
 def format_date_rfc822(dt_str):
     from email.utils import formatdate
@@ -14,17 +14,12 @@ def format_date_rfc822(dt_str):
     dt = datetime.strptime(dt_str, "%Y-%m-%d")
     return formatdate(time.mktime(dt.timetuple()))
 
-def clean_dir(d):
-    if os.path.exists(d):
-        shutil.rmtree(d)
-    os.makedirs(d)
+def ensure_dir(path):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
 
 def load_template(name):
     with open(f"templates/{name}", "r", encoding="utf-8") as f:
         return f.read()
-
-def ensure_dir(path):
-    os.makedirs(os.path.dirname(path), exist_ok=True)
 
 def build_schemas(page_type, data):
     schemas = []
@@ -117,11 +112,12 @@ def build_schemas(page_type, data):
     return json.dumps(schemas)
 
 def generate():
-    clean_dir(OUT_DIR)
-    
-    # Copy assets
+    # Copy assets from src/assets to ../assets
     if os.path.exists("assets"):
-        shutil.copytree("assets", os.path.join(OUT_DIR, "assets"))
+        if not os.path.exists(os.path.join(OUT_DIR, "assets")):
+            os.makedirs(os.path.join(OUT_DIR, "assets"), exist_ok=True)
+        import distutils.dir_util
+        distutils.dir_util.copy_tree("assets", os.path.join(OUT_DIR, "assets"))
         
     base_tpl = load_template("base.html")
     article_tpl = load_template("article.html")
