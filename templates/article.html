@@ -8,7 +8,7 @@
                 <h1 class="article-title">{{title}}</h1>
                 <div class="article-meta">
                     <div class="author-info">
-                        <img src="/assets/author.png" alt="{{author_name}}" class="author-avatar" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\'><rect width=\'40\' height=\'40\' fill=\'%23ccc\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\'>A</text></svg>'">
+                        <img src="/assets/author.png" alt="{{author_name}}" class="author-avatar" loading="lazy" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\'><rect width=\'40\' height=\'40\' fill=\'%23ccc\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\'>A</text></svg>'">
                         <div>
                             <span class="author-name">By {{author_name}}</span>
                             <span class="publish-date">Updated: {{publish_date}}</span>
@@ -35,7 +35,7 @@
                 </div>
                 
                 <div class="author-box">
-                    <img src="/assets/author.png" alt="{{author_name}}" class="author-avatar-large" onerror="this.style.display='none'">
+                    <img src="/assets/author.png" alt="{{author_name}}" class="author-avatar-large" loading="lazy" onerror="this.style.display='none'">
                     <div>
                         <h4>About {{author_name}}</h4>
                         <p>{{author_bio}}</p>
