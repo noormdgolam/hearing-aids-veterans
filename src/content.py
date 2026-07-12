@@ -141,7 +141,7 @@ def generate_article_body(title, category_key, keyword):
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
         <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
+             (adsbygoogle = window.adsbygoogle || []).push({{}});
         </script>
     </div>
 
