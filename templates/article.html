@@ -1,0 +1,60 @@
+<article class="single-article">
+    <div class="container article-container">
+        <div class="article-content">
+            <header class="article-header">
+                <div class="breadcrumbs">
+                    <a href="/">Home</a> > <a href="{{category_url}}">{{category_title}}</a>
+                </div>
+                <h1 class="article-title">{{title}}</h1>
+                <div class="article-meta">
+                    <div class="author-info">
+                        <img src="/assets/author.png" alt="{{author_name}}" class="author-avatar" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\'><rect width=\'40\' height=\'40\' fill=\'%23ccc\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\'>A</text></svg>'">
+                        <div>
+                            <span class="author-name">By {{author_name}}</span>
+                            <span class="publish-date">Updated: {{publish_date}}</span>
+                        </div>
+                    </div>
+                    <div class="social-share">
+                        <a href="https://twitter.com/intent/tweet?text={{url_encoded_title}}&url={{current_url}}" target="_blank" rel="noopener" class="share-btn twitter" aria-label="Share on Twitter">X</a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{current_url}}" target="_blank" rel="noopener" class="share-btn facebook" aria-label="Share on Facebook">f</a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{current_url}}&title={{url_encoded_title}}" target="_blank" rel="noopener" class="share-btn linkedin" aria-label="Share on LinkedIn">in</a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="article-body">
+                {{body}}
+                
+                <div class="newsletter-inline">
+                    <h3>Get Weekly Hearing Aid Tips for Veterans</h3>
+                    <p>Join our newsletter to stay updated on VA policies and hearing aid technology.</p>
+                    <form action="/subscribe-placeholder" method="POST">
+                        <input type="email" placeholder="Your Email Address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+                
+                <div class="author-box">
+                    <img src="/assets/author.png" alt="{{author_name}}" class="author-avatar-large" onerror="this.style.display='none'">
+                    <div>
+                        <h4>About {{author_name}}</h4>
+                        <p>{{author_bio}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="article-sidebar">
+            <div class="sidebar-widget">
+                <h3>Related Articles</h3>
+                <ul class="related-list">
+                    {{related_articles}}
+                </ul>
+            </div>
+            <div class="sidebar-widget sticky-ad">
+                <!-- adsense-placeholder-sidebar -->
+                <div class="ad-placeholder-box tall">Advertisement</div>
+            </div>
+        </aside>
+    </div>
+</article>

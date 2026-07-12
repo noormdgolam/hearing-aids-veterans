@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hearing-aids-veterans.bongshai.com/sitemap.xml
