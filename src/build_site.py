@@ -276,7 +276,7 @@ def generate():
         final_cat = final_cat.replace("{{canonical_url}}", full_url)
         final_cat = final_cat.replace("{{author_name}}", SITE_CONFIG["author_name"])
         
-        out_path = os.path.join(OUT_DIR, cat_slug, "index.html")
+        out_path = os.path.join(OUTPUT_DIR, cat_slug, "index.html")
         ensure_dir(out_path)
         with open(out_path, "w", encoding="utf-8") as f:
             f.write(final_cat)

@@ -65,104 +65,125 @@ raw_articles = [
     ("VA Benefits for Spouses of Veterans with Hearing Loss", "va-benefits", "va-benefits-spouses-hearing-loss", "Learn what support, if any, is available for the spouses and dependents of veterans suffering from profound hearing loss.", "VA benefits spouse")
 ]
 
+import random
+
+states_list = [
+    "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", 
+    "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", 
+    "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", 
+    "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", 
+    "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", 
+    "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", 
+    "West Virginia", "Wisconsin", "Wyoming"
+]
+
+for st in states_list:
+    raw_articles.append((f"VA Audiology Clinics and Resources in {st}", "va-benefits", f"va-audiology-clinics-{st.lower().replace(' ', '-')}", f"A complete guide to finding VA audiology clinics and hearing aid resources for veterans in {st}.", f"VA audiology {st}"))
+    raw_articles.append((f"State Assistance for Veterans Hearing Aids in {st}", "va-benefits", f"state-assistance-hearing-aids-{st.lower().replace(' ', '-')}", f"Learn about additional state-level assistance programs for veterans seeking hearing aids in {st}.", f"veterans hearing aids {st}"))
+    raw_articles.append((f"Finding Veteran-Friendly Audiologists in {st}", "choosing-hearing-aids", f"veteran-friendly-audiologists-{st.lower().replace(' ', '-')}", f"Tips and directories for finding private audiologists in {st} who accept VA Community Care.", f"veteran audiologist {st}"))
+
 ARTICLES = []
 base_date = datetime.now() - timedelta(days=180)
 
 def generate_article_body(title, category_key, keyword):
     cat_title = CATEGORIES[category_key]["title"]
     
+    spin_intros = [
+        f"<p>If you are a US military veteran searching for information on <strong>{keyword}</strong>, you are not alone. Thousands of veterans face questions about their auditory health and benefits every year. In this comprehensive guide, we will explore everything you need to know about {title.lower()} and how it impacts your daily life.</p><p>Hearing loss is the most common service-connected disability, meaning the VA is well-equipped to handle claims related to {keyword}. However, the process can still be daunting. We are here to simplify it for you.</p>",
+        f"<p>Navigating the world of VA benefits and audiology can be overwhelming. When looking into <strong>{keyword}</strong>, it is crucial to understand all your options. This article serves as your ultimate resource for {title.lower()}, breaking down the complexities into actionable steps.</p><p>Veterans often wait years before seeking help for hearing issues. By taking the time to research {keyword}, you are taking a vital step toward improving your overall health and well-being.</p>",
+        f"<p>Welcome to our deep dive into <strong>{keyword}</strong>. For veterans, understanding the intricacies of {title.lower()} can be the difference between getting fully funded top-tier hearing aids and paying out of pocket. Our goal is to equip you with the knowledge you need.</p><p>The Department of Veterans Affairs has established specific protocols regarding {keyword}. By familiarizing yourself with these rules, you can advocate for yourself more effectively during your audiology appointments.</p>"
+    ]
+    
+    spin_details = [
+        f"<h2>Why {cat_title} Matters for Veterans</h2><p>In the realm of {cat_title}, staying informed empowers you to advocate for yourself. The VA healthcare system is vast, and knowing the specific protocols for {keyword} can save you months of waiting. Whether you are dealing with noise-induced hearing loss from artillery fire or age-related decline, the principles of {cat_title} apply.</p><p>Many veterans are unaware that they might qualify for the Community Care network if wait times at their local VA clinic exceed 28 days. This is especially relevant when dealing with {keyword}. Always ask your primary care provider about alternative scheduling options if you are experiencing significant delays.</p>",
+        f"<h2>The Impact of {keyword} on Daily Life</h2><p>Addressing {keyword} is not just about hearing better; it's about staying connected. Untreated hearing loss has been linked to cognitive decline, isolation, and depression in older adults. Within the context of {cat_title}, the VA provides extensive support networks, including support groups and specialized therapies.</p><p>When you begin the process of addressing {keyword}, you will likely undergo a comprehensive audiogram. This test determines your precise levels of hearing loss across different frequencies, allowing the audiologist to program your devices specifically to your needs.</p>"
+    ]
+    
+    spin_actions = [
+        f"<h2>Step-by-Step Guidance for {keyword}</h2><p>To effectively handle matters related to {keyword}, follow these steps:</p><ol><li><strong>Schedule an Evaluation:</strong> Contact your local VA medical center's audiology department or request a referral through your Primary Care Provider.</li><li><strong>Gather Documentation:</strong> Have your DD-214, service medical records, and any private audiograms ready. Proving service connection is crucial.</li><li><strong>Attend the Exam:</strong> Be honest about how your hearing impacts your quality of life. Don't downplay your symptoms.</li><li><strong>Follow Up:</strong> Don't hesitate to ask for adjustments or second opinions if your hearing aids are not functioning correctly.</li></ol>",
+        f"<h2>Actionable Steps: Navigating {keyword}</h2><p>Taking action on {keyword} requires a structured approach. First, ensure you are enrolled in VA healthcare. If you aren't, you must apply via VA.gov or in person. Once enrolled, request an audiology consult. During your appointment regarding {keyword}, make sure to discuss all your symptoms, including tinnitus or vertigo.</p><p>Remember that you have the right to request specific styles of hearing aids (like receiver-in-canal or behind-the-ear), though the final decision rests on clinical necessity as determined by the VA audiologist.</p>"
+    ]
+    
+    intro = random.choice(spin_intros)
+    details = random.choice(spin_details)
+    actions = random.choice(spin_actions)
+    
     body = f"""
     <div class="introduction">
-        <p>If you are a US military veteran searching for information on <strong>{keyword}</strong>, you are not alone. Thousands of veterans face questions about their auditory health and benefits every year. In this comprehensive guide, we will explore everything you need to know about {title.lower()} and how it impacts your daily life.</p>
+        {intro}
     </div>
 
-    <div class="key-takeaways">
+    <div class="key-takeaways" style="background-color: #f8f9fa; border-left: 4px solid #0d47a1; padding: 15px; margin: 20px 0;">
         <h3>Key Takeaways</h3>
         <ul>
             <li>Understanding <strong>{keyword}</strong> is the first step toward better hearing health.</li>
             <li>The Department of Veterans Affairs offers various resources related to {cat_title}.</li>
             <li>Always consult with a licensed VA audiologist before making decisions about your hearing care.</li>
+            <li>Keep a detailed log of your symptoms and how they affect your daily communication.</li>
         </ul>
     </div>
 
-    <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-YOUR_PUBLISHER_ID_HERE"
-             data-ad-slot="YOUR_AD_SLOT_ID_HERE"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({{}});
-        </script>
+    <div class="ad-container" style="margin: 30px 0; text-align: center; background: #eee; padding: 20px;">
+        <!-- AdSense Placeholder: Top Banner -->
+        <p style="color: #888;">[AdSense Advertisement Space]</p>
     </div>
 
-    <h2>Understanding the Basics of {keyword.title()}</h2>
-    <p>Hearing loss and tinnitus are the top two service-connected disabilities among US veterans. Whether your hearing issues stem from acute acoustic trauma (like firearms or explosions) or chronic exposure to loud machinery (such as aircraft or engine rooms), navigating the solutions can be overwhelming.</p>
-    <p>When looking into {keyword}, it is vital to keep your medical records organized and stay proactive. Many veterans do not realize the full extent of the benefits and modern technologies available to them.</p>
-
-    <h2>Why {cat_title} Matters for Veterans</h2>
-    <p>In the realm of {cat_title}, staying informed empowers you to advocate for yourself. The VA healthcare system is vast, and knowing the specific protocols for {keyword} can save you months of waiting.</p>
+    {details}
     
-    <div class="table-responsive">
-        <table class="comparison-table">
+    <div class="table-responsive" style="margin: 30px 0;">
+        <table class="comparison-table" style="width: 100%; border-collapse: collapse;">
             <thead>
-                <tr>
-                    <th>Factor</th>
-                    <th>Description</th>
-                    <th>Relevance to Veterans</th>
+                <tr style="background-color: #0d47a1; color: white;">
+                    <th style="padding: 10px; border: 1px solid #ddd;">Factor</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Description</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Relevance to Veterans</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Cost</td>
-                    <td>Often fully covered if service-connected</td>
-                    <td>High</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Cost of Devices</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Often fully covered if enrolled in VA healthcare</td>
+                    <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: green;">High</td>
                 </tr>
                 <tr>
-                    <td>Technology</td>
-                    <td>State-of-the-art models available</td>
-                    <td>High</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Technology Level</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Premium, state-of-the-art models (Bluetooth, rechargeable)</td>
+                    <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: green;">High</td>
                 </tr>
                 <tr>
-                    <td>Wait Times</td>
-                    <td>Varies by regional VA center</td>
-                    <td>Medium</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Batteries & Supplies</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Free batteries and wax guards supplied via mail order</td>
+                    <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: green;">High</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Wait Times</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Varies heavily by regional VA medical center</td>
+                    <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: orange;">Medium</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-YOUR_PUBLISHER_ID_HERE"
-             data-ad-slot="YOUR_AD_SLOT_ID_HERE"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({{}});
-        </script>
+    <div class="ad-container" style="margin: 30px 0; text-align: center; background: #eee; padding: 20px;">
+        <!-- AdSense Placeholder: Mid-Content -->
+        <p style="color: #888;">[AdSense Advertisement Space]</p>
     </div>
 
-    <h2>Step-by-Step Guidance</h2>
-    <p>To effectively handle matters related to {keyword}, follow these steps:</p>
-    <ol>
-        <li><strong>Schedule an Evaluation:</strong> Contact your local VA medical center's audiology department.</li>
-        <li><strong>Gather Documentation:</strong> Have your DD-214 and any prior service medical records ready.</li>
-        <li><strong>Attend the Exam:</strong> Be honest about how your hearing impacts your quality of life.</li>
-        <li><strong>Follow Up:</strong> Don't hesitate to ask for adjustments or second opinions if needed.</li>
-    </ol>
+    {actions}
 
     <h2>Frequently Asked Questions</h2>
-    <div class="faq-section">
-        <div class="faq-item">
-            <h4>Is {keyword} covered by the VA?</h4>
-            <p>Coverage depends on whether your condition is deemed service-connected or if you meet specific income thresholds. Always check with your local VA eligibility office.</p>
+    <div class="faq-section" style="margin-top: 20px;">
+        <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <h4 style="margin-bottom: 5px; color: #0d47a1;">Is {keyword} covered by the VA?</h4>
+            <p style="margin: 0;">Coverage depends on whether your condition is deemed service-connected or if you meet specific income thresholds (Group 8 exclusions). However, many veterans qualify for hearing care even without a service connection. Always check with your local VA eligibility office.</p>
         </div>
-        <div class="faq-item">
-            <h4>How long does the process take?</h4>
-            <p>From initial appointment to receiving care or devices, it can take anywhere from a few weeks to several months.</p>
+        <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <h4 style="margin-bottom: 5px; color: #0d47a1;">How long does the process take?</h4>
+            <p style="margin: 0;">From your initial appointment request to receiving your programmed hearing devices, the timeline can range from a few weeks to several months, heavily dependent on your local clinic's backlog.</p>
+        </div>
+        <div class="faq-item" style="margin-bottom: 20px; padding-bottom: 15px;">
+            <h4 style="margin-bottom: 5px; color: #0d47a1;">Can I go to a civilian audiologist?</h4>
+            <p style="margin: 0;">Yes, but only if the VA refers you out through the Community Care network. If you go to a civilian provider without prior authorization, the VA will not cover the cost of the devices or the exam.</p>
         </div>
     </div>
     """
